@@ -12,6 +12,9 @@ library(scales) #extending for ggplot2
 library(plotly) #for interactive graphs
 library(readxl) #for reading excel file   
 library(data.table)
+library(reshape)
+library(reshape2)
+library(hrbrthemes)
 #load Data into R 
 
 df1 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "database",skip = 5))
@@ -43,4 +46,4 @@ source("PB-HH-step1_cleaning.R")
 
 ## Start data tables and visualization
 
-source("PB-HH-step2_table_visualization.R")
+#source("PB-HH-step2_table_visualization.R")

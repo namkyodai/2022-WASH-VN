@@ -77,6 +77,13 @@ A10 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "
 df2$a10<-recode(df2$a10, !!!setNames(A10$c, A10$a))
 df2$a10 <- factor(df2$a10,levels=unlist(A10$c)) #order the list
 
+
+i <-c(45:72)
+df2[ , i] <- apply(df2[ , i], 2,            # Specify own function within apply
+                    function(x) as.numeric(as.character(x)))
+
+glimpse(df2)
+
 ## Owned Rank of Economic compared to neighbors
 A13 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "A13",skip = 1))
 df2$a13_1_1<-recode(df2$a13_1_1, !!!setNames(A13$c, A13$a))
