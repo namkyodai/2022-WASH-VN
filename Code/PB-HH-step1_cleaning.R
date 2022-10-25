@@ -327,8 +327,8 @@ df2$d1<-recode(df2$d1, !!!yesno)
 
 #What is the type of toilet in your house?
 D3 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "D3",skip = 1))
-# df2$d3<-recode(df2$d3, !!!setNames(D3$c, D3$a))
-# df2$d3 <- factor(df2$d3,levels=unlist(D3$c)) 
+ df2$d3<-recode(df2$d3, !!!setNames(D3$c, D3$a))
+ df2$d3 <- factor(df2$d3,levels=unlist(D3$c)) 
 
 #How old is your toilet?
 D4 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "D4",skip = 1))
@@ -360,6 +360,7 @@ df2$e2 <- factor(df2$e2,levels=unlist(E2$c))
 df2$e3_1[is.na(df2$e3_1)] = 2
 df2$e3_1<-recode(df2$e3_1, !!!yesno)
 
+df2$e3_2 <-as.numeric(df2$e3_2)
 
 #How often is the waste collected?
 E4 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "E4",skip = 1))
@@ -368,8 +369,8 @@ df2$e4 <- factor(df2$e4,levels=unlist(E4$c))
 
 #In your opinion, does the garbage collection site meet hygienic standards in the community?
 E6 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "E6",skip = 1))
-# df2$e6<-recode(df2$e6, !!!setNames(E6$c, E6$a))
-# df2$e6 <- factor(df2$e6,levels=unlist(E6$c)) 
+ df2$e6<-recode(df2$e6, !!!setNames(E6$c, E6$a))
+ df2$e6 <- factor(df2$e6,levels=unlist(E6$c)) 
 
 
 #In your opinion, are there any outstanding environmental problems in the community?
@@ -432,7 +433,8 @@ df2<-add_column(df2, result, .after = "f5")
 #Are you willing to connect to the network if the charge is affordable? Or you still prefer to use the existing water source.
 
 G1 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Household.xlsx", sheet = "G1",skip = 1))
-G1
+#df2$g1<-recode(df2$g1, !!!setNames(G1$c, G1$a))
+#df2$g1 <- factor(df2$g1,levels=unlist(G1$c)) 
 
 
 #For having more reliable water supply and better quality of water, are you willing to pay additional expenses on top of existing expense for water consumption?
