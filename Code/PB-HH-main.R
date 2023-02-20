@@ -42,7 +42,7 @@ glimpse(df2)
 
 
 ##Start data Cleaning process
-#source("PB-HH-step1_cleaning.R")
+source("PB-HH-step1_cleaning.R")
 
 ## Start data tables and visualization
 

@@ -37,13 +37,12 @@ missing %>%
   arrange(desc(value))
 
 df2<-df1 %>%
-      clean_names() %>%
-  filter(!is.na(a1))
+  clean_names() 
 glimpse(df2)
 
 
 ##Start data Cleaning process
-#source("PB-HH-step1_cleaning.R")
+source("PB-HH-step1_cleaning.R")
 
 ## Start data tables and visualization
 

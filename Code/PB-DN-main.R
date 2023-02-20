@@ -14,7 +14,7 @@ library(readxl) #for reading excel file
 library(data.table)
 #load Data into R 
 
-df1 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Industry.xlsx", sheet = "database",skip = 5))
+df1 <- data.frame(read_excel("../Data/WASH-data-PB-VN-Industry.xlsx", sheet = "database",skip = 6))
 df1<-df1 %>%
   remove_empty(c("rows")) #removing empty rows and empty columns it they exist
 glimpse(head(df1))
@@ -38,9 +38,66 @@ df2<-df1 %>%
 glimpse(df2)
 
 
-##Start data Cleaning process
-source("PB-HH-step1_cleaning.R")
+# Age distribution
+df2$q1_10 <- as.numeric(df2$q1_10) # 
 
-## Start data tables and visualization
+graph_q1_10_box<-df2 %>%
+  ggplot(aes(q1_10/1000000))+
+  geom_boxplot()  +  
+  labs(
+    x="Million VND")
+graph_q1_10_box
 
-source("PB-HH-step2_table_visualization.R")
+summary(df2$q1_10/1000000)
+
+graph_q1_10_den<-df2 %>%
+  ggplot(aes(q1_10))+
+  geom_density()  +  
+  labs(
+    x="Million VND")
+graph_q1_10_den
+
+
+graph_q1_13<-df2 %>%
+  ggplot(aes(q1_13))+
+  geom_histogram()  +  
+  labs(
+    x="Million VND")
+graph_q1_13
+
+
+summary(df2$q2)
+summary(df2$q11)
+
+graph_q1_12_box<-df2 %>%
+  ggplot(aes(q1_12/1000000))+
+  geom_boxplot()  +  
+  labs(
+    x="Million VND")
+graph_q1_12_box
+
+summary(df2$q1_12/1000000)
+
+graph_q1_12_den<-df2 %>%
+  ggplot(aes(q1_12))+
+  geom_density()  +  
+  labs(
+    x="Million VND")
+graph_q1_12_den
+
+
+graph_q12_box<-df2 %>%
+  ggplot(aes(q12/1000000))+
+  geom_boxplot()  +  
+  labs(
+    x="Million VND")
+graph_q12_box
+
+summary(df2$q12/1000000)
+
+graph_q12_den<-df2 %>%
+  ggplot(aes(q12))+
+  geom_density()  +  
+  labs(
+    x="Million VND")
+graph_q12_den

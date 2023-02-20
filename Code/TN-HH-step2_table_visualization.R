@@ -502,6 +502,10 @@ graph_a11_1_den<-df2 %>%
 graph_a11_1_den
 ggsave("../visuals/TN/graph_a11_1_den.png", plot = graph_a11_1_den)
 
+
+summary(df2$a11_1)
+
+
 #box plot with town
 graph_a11_1_q5<-ggplot(df2, aes(x=q5,y=a11_1))+
   geom_boxplot(fill="cadetblue3", alpha=0.7)+  
@@ -881,6 +885,30 @@ a12$variable<-recode(a12$variable, a12_1="Total", a12_2="Farming",a12_3="Fixed w
 
 a12
 
+ggplot(data=a12%>%
+         filter(variable %in% c("Total")), aes(x=value,group=variable, fill=variable)) +
+  geom_boxplot() +  
+  labs(
+    title = "Distribution of Income",
+    x="Million VND",
+    y = "Density"
+  )+
+  theme_ipsum()
+
+ggplot(data=a12%>%
+         filter(variable %in% c("Total")), aes(x=value,group=variable, fill=variable)) +
+  geom_density() +  
+  labs(
+    title = "Distribution of Income",
+    x="Million VND",
+    y = "Density"
+  )+
+  theme_ipsum()
+
+summary(df2$a12_1)
+
+
+
 graph_a12_box <- ggplot(data=a12%>%
                           filter(variable %in% c("Total","Farming","Fixed wage","Pension","Self-business","Saving","Gifted by relatives","Off-season part-time","Others")), aes(x=value, group=variable, fill=variable)) +
   geom_boxplot() +  
@@ -908,6 +936,15 @@ graph_a12_v_box <- ggplot(data=a12%>%
 graph_a12_v_box
 
 ggsave("../visuals/TN/graph_a12_box.png", plot = graph_a12_box)
+
+ggplot(df2, aes(x=q5,y=a12_1))+
+  geom_boxplot(fill="cadetblue3", alpha=0.7)+  
+  labs(
+    title = "Income vs Town",
+    x="Town",
+    y="Millions VND")+
+  stat_summary(fun=mean, geom="point", shape=23, size=2, fill="red")+
+  coord_flip()
 
 
 

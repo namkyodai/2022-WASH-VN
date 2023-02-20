@@ -45,7 +45,7 @@ graph_q5 <- ggplot(df2%>%
     colour = "Labels"
   )+
   coord_flip()
-
+graph_q5
 ggsave("../visuals/PB/graph_q5.png", plot = graph_q5)
 
 
@@ -366,7 +366,7 @@ graph_a8_no <- ggplot(data=a8_no, aes(x=value, group=variable, fill=variable)) +
     y = "Density"
   )+
   theme_ipsum()
-
+graph_a8_no
 ggsave("../visuals/PB/graph_a8_no.png", plot = graph_a8_no)
 
 
@@ -416,7 +416,7 @@ graph_a9plus<-ggplot(a9plus, aes(x = reorder(a9plus,-n),y=n, label=n)) +
     y = "Number/Percentage"
   )#+
 #  coord_flip()
-
+graph_a9plus
 ggsave("../visuals/PB/graph_a9plus.png", plot = graph_a9plus)
 
 # combining a9 and a9plus
@@ -439,6 +439,8 @@ graph_a9a9plus<-ggplot(a9a9plus, aes(x = reorder(a9,n),y=n, fill = a9plus, label
     y = "Number/Percentage"
   )+
   coord_flip()
+
+graph_a9a9plus
 ggsave("../visuals/PB/graph_a9a9plus.png", plot = graph_a9a9plus)
 
 
@@ -482,12 +484,15 @@ ggsave("../visuals/PB/graph_a10.png", plot = graph_a10)
 
 df2$a11_1 <- as.numeric(df2$a11_1) # concerning to integer value
 
+summary(df2$a11_1)
+
 #box plot
 graph_a11_1_box<-df2 %>%
   ggplot(aes(a11_1))+
   geom_boxplot()  +  
   labs(
     x="Monthly expenses")
+graph_a11_1_box
 ggsave("../visuals/PB/graph_a11_1_box.png", plot = graph_a11_1_box)
 
 # density
@@ -496,7 +501,7 @@ graph_a11_1_den<-df2 %>%
   geom_density()  +  
   labs(
     x="Monthly expenses")
-
+graph_a11_1_den
 ggsave("../visuals/PB/graph_a11_1_den.png", plot = graph_a11_1_den)
 
 #box plot with town
@@ -508,6 +513,8 @@ graph_a11_1_q5<-ggplot(df2, aes(x=q5,y=a11_1))+
     y="Millions VND")+
   stat_summary(fun=mean, geom="point", shape=23, size=2, fill="red")+
   coord_flip()
+
+graph_a11_1_q5
 ggsave("../visuals/PB/graph_a11_1_q5.png", plot = graph_a11_1_q5)
 
 
@@ -554,7 +561,7 @@ graph_a11_v_1 <- ggplot(data=a11_v%>%
     y = "Density"
   )+
   theme_ipsum()
-
+graph_a11_v_1
 ggsave("../visuals/PB/graph_a11_v_1.png", plot = graph_a11_v_1)
 
 graph_a11_v_1_box <- ggplot(data=a11_v%>%
@@ -865,6 +872,29 @@ ggsave("../visuals/PB/graph_a11_v_1516_box.png", plot = graph_a11_v_1516_box)
 ##########################################
 
 
+
+#box plot with town
+graph_a12_1_q5<-ggplot(df2, aes(x=q5,y=a12_1))+
+  geom_boxplot(fill="cadetblue3", alpha=0.7)+  
+  labs(
+    title = "Income vs Town",
+    x="Town",
+    y="Millions VND")+
+  stat_summary(fun=mean, geom="point", shape=23, size=2, fill="red")+
+  coord_flip()
+
+graph_a12_1_q5
+ggsave("../visuals/PB/graph_a12_1_q5.png", plot = graph_a12_1_q5)
+
+
+
+
+
+
+
+
+
+
 a12 <- df2%>%
   select(q1,a12_1,a12_2,a12_3,a12_4,a12_5,a12_6,a12_7,a12_8,a12_9)
 
@@ -918,7 +948,27 @@ graph_a12 <- ggplot(data=a12%>%
   theme_ipsum()
 graph_a12
 
+
 ggsave("../visuals/PB/graph_a12.png", plot = graph_a12)
+
+
+#box plot
+
+graph_a12_box <- ggplot(data=a12%>%
+                      filter(variable %in% c("Total")), aes(x=value, group=variable, fill=variable)) +
+  geom_boxplot(alpha=.4) +  
+  labs(
+    title = "Distribution of Income",
+    x="Million VND",
+    y = "Density"
+  )+
+  theme_ipsum()
+graph_a12_box
+
+
+ggsave("../visuals/PB/graph_a12_box.png", plot = graph_a12_box)
+
+summary(df2$a12_1)
 
 
 #### Benchmarking Neighbor - Economics
@@ -1359,6 +1409,8 @@ graph_b3_box<-df2 %>%
 graph_b3_box
 ggsave("../visuals/PB/graph_b3_box.png", plot = graph_b3_box)
 
+
+
 # density
 graph_b3_den<-df2 %>%
   ggplot(aes(b3))+
@@ -1385,7 +1437,7 @@ ggsave("../visuals/PB/graph_b3_q5.png", plot = graph_b3_q5)
 
 
 
-### is that volumn enought
+### is that volumn enough
 
 b4<-df2%>%
   filter(!is.na(b4))%>%
